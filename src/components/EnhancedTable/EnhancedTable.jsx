@@ -24,13 +24,20 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
 
-const EnhancedTable = ({ headCells, rows, initialOrderBy, initialOrder }) => {
+const EnhancedTable = ({ headCells, rows, initialOrderBy, initialOrder, handleClickOpenDialog, setItemToEdit }) => {
 	const [order, setOrder] = React.useState(initialOrder);
 	const [orderBy, setOrderBy] = React.useState(initialOrderBy);
 	const [selected, setSelected] = React.useState([]);
 	const [page, setPage] = React.useState(0);
 	const [dense, setDense] = React.useState(false);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+	React.useEffect(() => {
+		if(selected.length === 1) {
+			setItemToEdit(rows.find(row => row.id === selected[0]))
+		}
+	}, [selected])
+	
 	
 	function descendingComparator(a, b, orderBy) {
 		if (b[orderBy] < a[orderBy]) {
@@ -160,7 +167,7 @@ const EnhancedTable = ({ headCells, rows, initialOrderBy, initialOrder }) => {
 				<>
 					{numSelected === 1 && (
 						<Tooltip title="Edit">
-							<IconButton>
+							<IconButton onClick={handleClickOpenDialog}>
 								<Edit />
 							</IconButton>
 						</Tooltip>
@@ -195,7 +202,7 @@ const EnhancedTable = ({ headCells, rows, initialOrderBy, initialOrder }) => {
 
 	const handleSelectAllClick = (event) => {
 		if (event.target.checked) {
-		const newSelected = rows.map((n) => n.name);
+		const newSelected = rows.map((n) => n.id);
 		setSelected(newSelected);
 		return;
 		}

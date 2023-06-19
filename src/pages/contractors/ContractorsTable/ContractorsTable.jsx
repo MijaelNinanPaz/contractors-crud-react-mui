@@ -1,7 +1,20 @@
 import React from 'react'
 import { EnhancedTable } from '../../../components'
+import { DialogUpdateContractor } from '../DialogUpdateContractor';
 
 const ContractorsTable = () => {
+	const [openUpdateDialog, setOpenUpdateDialog] = React.useState(false);
+	const [itemToEdit, setItemToEdit] = React.useState({})
+
+	const handleClickOpenDialog = () => {
+        setOpenUpdateDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenUpdateDialog(false);
+    };
+	
+
 	const headCells = [
 		{
 			id: 'id',
@@ -77,12 +90,22 @@ const ContractorsTable = () => {
 	];
 
 	return (
-		<EnhancedTable
-			headCells={headCells}
-			rows={rows}
-			initialOrderBy={'id'}	// name of the field that will prioritize the order
-			initialOrder={'desc'} 	// 'asc' or 'desc'
-		/>
+		<>
+			<EnhancedTable
+				headCells={headCells}
+				rows={rows}
+				initialOrderBy={'id'}	// name of the field that will prioritize the order
+				initialOrder={'desc'} 	// 'asc' or 'desc'
+				handleClickOpenDialog={handleClickOpenDialog}
+				setItemToEdit={setItemToEdit}
+			/>
+			<DialogUpdateContractor
+				open={openUpdateDialog}
+				handleClose={handleCloseDialog}
+				itemToEdit={itemToEdit}
+			/>
+		</>
+		
 	)
 }
 

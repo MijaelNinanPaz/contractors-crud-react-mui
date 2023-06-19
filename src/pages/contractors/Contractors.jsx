@@ -6,14 +6,14 @@ import DialogAddContractor from './DialogAddContractor/DialogAddContractor';
 import DataGridDemo from './ContractorsTable/DataGridDemo';
 
 const Contractors = () => {
-    const [open, setOpen] = React.useState(false);
+    const [openAddContractor, setOpenAddContractor] = React.useState(false);
 
     const handleClickOpen = () => {
-        setOpen(true);
+        setOpenAddContractor(true);
     };
 
     const handleClose = () => {
-        setOpen(false);
+        setOpenAddContractor(false);
     };
 
     return (
@@ -32,7 +32,7 @@ const Contractors = () => {
             >
                 <AddIcon />
             </Fab>
-            <DialogAddContractor open={open} handleClose={handleClose}/>
+            <DialogAddContractor open={openAddContractor} handleClose={handleClose}/>
         </>
     )
 }

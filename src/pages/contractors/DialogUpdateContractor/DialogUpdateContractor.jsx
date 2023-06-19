@@ -26,7 +26,7 @@ const ItemMap = styled(Paper)(({ theme }) => ({
 	color: theme.palette.text.secondary,
 }));
 
-const DialogAddContractor = ({ open, handleClose }) => {
+const DialogUpdateContractor = ({ open, handleClose, itemToEdit }) => {
 	const [contractorData, setContractorData] = useState({
         name: "",
         last_name: "",
@@ -162,4 +162,4 @@ const DialogAddContractor = ({ open, handleClose }) => {
 	)
 };
 
-export default DialogAddContractor;
+export default DialogUpdateContractor;
