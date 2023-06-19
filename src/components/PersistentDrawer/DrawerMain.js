@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+const DrawerMain = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -22,4 +22,4 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 }),
 );
 
-export default Main;
+export default DrawerMain;
